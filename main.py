@@ -6,6 +6,12 @@ MAKEFUN_OUTPUT_DIR outside the grader. Standard library only.
 
 import os
 import stat
+import sys
+
+# The grader runs `python3 -P -s /bot/main.py`: -P stops Python from
+# prepending the script's directory to sys.path, so the news_image
+# package would not be importable without this bootstrap.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from news_image.render import render_png_bytes
 
